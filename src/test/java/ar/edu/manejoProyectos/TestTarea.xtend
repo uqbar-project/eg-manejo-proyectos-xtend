@@ -39,7 +39,7 @@ class TestTarea {
 
 	@Test
 	def void convertirASimple() {
-		darClase.setSimple();
+		darClase.setSimple()
 		Assert.assertEquals(darClase.costo, 375.0, 0.01)
 	}
 	
