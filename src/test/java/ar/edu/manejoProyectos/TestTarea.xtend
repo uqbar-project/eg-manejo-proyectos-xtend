@@ -1,9 +1,9 @@
 package ar.edu.manejoProyectos
 
+import org.junit.Assert
 import org.junit.Before
-import org.junit.Test
-import junit.framework.Assert
 import org.junit.Rule
+import org.junit.Test
 import org.junit.rules.ExpectedException
 
 class TestTarea {
@@ -12,7 +12,7 @@ class TestTarea {
 	Tarea darClase
 
 	@Rule
-	public ExpectedException excepcionEsperada = ExpectedException::none()
+	public ExpectedException excepcionEsperada = ExpectedException.none()
 	
 	@Before
 	def void initialize() {
@@ -29,18 +29,18 @@ class TestTarea {
 
 	@Test
 	def void testCostoSimple() {
-		Assert::assertEquals(fregar.costo, 500.0)
+		Assert.assertEquals(fregar.costo, 500.0, 0.01)
 	}
 	
 	@Test
 	def void testCostoCompuesta() {
-		Assert::assertEquals(darClase.costo, 390.0)
+		Assert.assertEquals(darClase.costo, 390.0, 0.01)
 	}
 
 	@Test
 	def void convertirASimple() {
 		darClase.setSimple();
-		Assert::assertEquals(darClase.costo, 375.0)
+		Assert.assertEquals(darClase.costo, 375.0, 0.01)
 	}
 	
 	@Test

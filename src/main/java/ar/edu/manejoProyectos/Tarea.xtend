@@ -2,13 +2,15 @@ package ar.edu.manejoProyectos
 
 import java.util.ArrayList
 import java.util.Collection
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 class Tarea {
 	
-	@Property int tiempo = 0
-	@Property Complejidad complejidad = new ComplejidadMinima
-	@Property Collection<Impuesto> impuestos = new ArrayList<Impuesto>
-	@Property TipoDeTarea tipoDeTarea = new TareaSimple
+	int tiempo = 0
+	Complejidad complejidad = new ComplejidadMinima
+	Collection<Impuesto> impuestos = new ArrayList<Impuesto>
+	TipoDeTarea tipoDeTarea = new TareaSimple
 
 	def double getCosto() {
 		tipoDeTarea.getCosto(this)
