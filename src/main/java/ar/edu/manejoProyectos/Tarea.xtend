@@ -40,5 +40,9 @@ class Tarea {
 	def void agregarSubtarea(Tarea tarea) {
 		tipoDeTarea.agregarSubtarea(tarea)
 	}
+	
+	def void agregarImpuesto(Impuesto impuesto) {
+		impuestos.add(impuesto)
+	}
 
 }
