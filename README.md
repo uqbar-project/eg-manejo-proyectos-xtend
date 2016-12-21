@@ -1,6 +1,8 @@
 
 # Ejercicio de Diseño - Manejo de Proyectos
 
+[![Build Status](https://travis-ci.org/uqbar-project/eg-manejo-proyectos-xtend.svg?branch=master)](https://travis-ci.org/uqbar-project/eg-manejo-proyectos-xtend) [![Coverage Status](https://coveralls.io/repos/github/uqbar-project/eg-manejo-proyectos-xtend/badge.svg?branch=master)](https://coveralls.io/github/uqbar-project/eg-manejo-proyectos-xtend?branch=master)
+
 ![image](images/pert.png) 
 
 ## Explicación
