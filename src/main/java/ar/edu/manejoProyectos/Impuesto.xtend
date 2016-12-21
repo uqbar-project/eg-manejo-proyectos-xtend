@@ -1,8 +1,6 @@
 package ar.edu.manejoProyectos
 
-import org.eclipse.xtend.lib.annotations.Data
-
-@Data class Impuesto {
+class Impuesto {
 	double porcentaje
 	
 	new(int porcentajeNeto) {
