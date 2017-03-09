@@ -7,7 +7,7 @@
 
 ## Explicación
 
-[Apunte Manejo de proyectos](https://docs.google.com/document/d/1wZPfanaroN2yaOHJk4UgYpU8cFElxSjGSg_GMb2TmdI/edit?usp=sharing)
+[Apunte Manejo de proyectos](https://docs.google.com/document/d/1yHzmqlJLFNwRGucz4wJgZmeq1zYddNgfQ6G1KcqRhdk/edit?usp=sharing)
 
 ## Conceptos a ver
 
