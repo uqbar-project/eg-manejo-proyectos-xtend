@@ -12,20 +12,24 @@ class Tarea {
 	Collection<Impuesto> impuestos = new ArrayList<Impuesto>
 	TipoDeTarea tipoDeTarea = new TareaSimple
 
-	def double getCosto() {
-		tipoDeTarea.getCosto(this)
+	def double costo() {
+		this.costoPorOverhead(this) + this.costoBase() + this.costoImpositivo(this)	
 	}
 	
-	def double getCostoTotal() {
+	def double costoBase() {
+		complejidad.getCosto(this)
+	}
+	
+	def double costoTotal() {
 		tipoDeTarea.getCostoTotal(this)
 	}
 	
-	def double getCostoBase() {
-		val costoComplejidad = complejidad.getCosto(this)
-		costoComplejidad + this.getCostoImpositivo(costoComplejidad)	
+	def costoPorOverhead(Tarea tarea) {
+		tipoDeTarea.costoPorOverhead(tarea)
 	}
 
-	def double getCostoImpositivo(double costo) {
+	def double costoImpositivo(Tarea tarea) {
+		val costo = tarea.costoBase
 		impuestos.fold (0.0) [ acum, impuesto | acum + impuesto.getCostoImpositivo(costo) ]
 	}
 
