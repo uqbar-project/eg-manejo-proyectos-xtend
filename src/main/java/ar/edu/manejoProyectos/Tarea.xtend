@@ -1,52 +1,77 @@
 package ar.edu.manejoProyectos
 
+import ar.edu.manejoProyectos.exceptions.BusinessException
 import java.util.ArrayList
 import java.util.Collection
+import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
-class Tarea {
+abstract class Tarea {
 	
 	int tiempo = 0
 	Complejidad complejidad = new ComplejidadMinima
 	Collection<Impuesto> impuestos = new ArrayList<Impuesto>
-	TipoDeTarea tipoDeTarea = new TareaSimple
 
 	def double costo() {
-		this.costoPorOverhead(this) + this.costoBase() + this.costoImpositivo(this)	
+		this.costoPorOverhead() + this.costoComplejidad() + this.costoImpositivo()	
 	}
 	
-	def double costoBase() {
+	def double costoComplejidad() {
 		complejidad.getCosto(this)
 	}
 	
-	def double costoTotal() {
-		tipoDeTarea.getCostoTotal(this)
-	}
-	
-	def costoPorOverhead(Tarea tarea) {
-		tipoDeTarea.costoPorOverhead(tarea)
-	}
-
-	def double costoImpositivo(Tarea tarea) {
-		val costo = tarea.costoBase
+	def double costoImpositivo() {
+		val costo = this.costoComplejidad
 		impuestos.fold (0.0) [ acum, impuesto | acum + impuesto.getCostoImpositivo(costo) ]
 	}
 
-	def void setCompuesta() {
-		tipoDeTarea = new TareaCompuesta
-	}
-	
-	def void setSimple() {
-		tipoDeTarea = new TareaSimple
-	}
-
-	def void agregarSubtarea(Tarea tarea) {
-		tipoDeTarea.agregarSubtarea(tarea)
-	}
-	
 	def void agregarImpuesto(Impuesto impuesto) {
 		impuestos.add(impuesto)
 	}
 
+	abstract def double costoPorOverhead()
+
+	abstract def void agregarSubtarea(Tarea tarea)
+
+	abstract def double costoTotal()
+
+}
+
+class TareaCompuesta extends Tarea {
+	
+	List<Tarea> subtareas = newArrayList
+	
+	override costoPorOverhead() { 
+		this.costoComplejidad() * this.factorMultiplicacionOverhead()
+	}
+	
+	def private double factorMultiplicacionOverhead() {
+		if (this.tieneMuchasTareas()) 0.04 else 0
+	}
+
+	def private boolean tieneMuchasTareas() {
+		subtareas.size() > 3
+	}
+
+	override double costoTotal() {
+		subtareas.fold (this.costo()) [ acum, subtarea | acum + subtarea.costoTotal ]
+	}
+
+	override void agregarSubtarea(Tarea tarea) {
+		subtareas.add(tarea)
+	}
+	
+}
+
+class TareaSimple extends Tarea {
+
+	override double costoTotal() { this.costo()	}
+
+	override costoPorOverhead() { 0 }
+
+	override void agregarSubtarea(Tarea tarea) {
+		throw new BusinessException("No puede agregar subtareas a una tarea simple")
+	}
+	
 }

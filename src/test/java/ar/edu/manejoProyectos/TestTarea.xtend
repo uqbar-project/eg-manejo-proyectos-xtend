@@ -20,27 +20,26 @@ class TestTarea {
 	
 	@Before
 	def void initialize() {
-		fregar = new Tarea() => [
+		fregar = new TareaSimple() => [
 			tiempo = 20
 		]
-		escribirApunte = new Tarea() => [
+		escribirApunte = new TareaSimple() => [
 			complejidad = new ComplejidadMaxima
 			tiempo = 20
 		]
-		escribirApunteCorto = new Tarea() => [
+		escribirApunteCorto = new TareaSimple() => [
 			complejidad = new ComplejidadMaxima
 			tiempo = 10
 		]
-		abrirEmpresaOffshore = new Tarea() => [
+		abrirEmpresaOffshore = new TareaSimple() => [
 			tiempo = 10
 			agregarImpuesto(new Impuesto(3))
 		]
-		hacerReporte = new Tarea() => [
+		hacerReporte = new TareaSimple() => [
 			tiempo = 10
 			complejidad = new ComplejidadMedia
 		]
-		darClase = new Tarea() => [
-			setCompuesta
+		darClase = new TareaCompuesta() => [
 			tiempo = 15
 			agregarSubtarea(fregar)
 			agregarSubtarea(fregar)
@@ -80,15 +79,9 @@ class TestTarea {
 	}
 
 	@Test
-	def void convertirASimple() {
-		darClase.setSimple()
-		Assert.assertEquals(darClase.costo, 375.0, 0.01)
-	}
-	
-	@Test
 	def void testAgregarSubtareaATareaSimple() {
 		excepcionEsperada.expectMessage("No puede agregar subtareas")
-		fregar.agregarSubtarea(new Tarea)
+		fregar.agregarSubtarea(new TareaSimple)
 	}
 
 }
