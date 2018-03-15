@@ -2,7 +2,7 @@ package ar.edu.manejoProyectos
 
 abstract class Complejidad {
 	
-	def double getCosto(Tarea tarea) {
+	def double costo(Tarea tarea) {
 		tarea.tiempo * 25d
 	}
 	
@@ -15,9 +15,9 @@ class ComplejidadMaxima extends Complejidad {
 	 * var = una variable con efecto (colateral), que puede modificar su referencia
 	 * val = una variable "final", que no cambia su referencia una vez ligada
 	 */
-	override double getCosto(Tarea tarea) {
+	override double costo(Tarea tarea) {
 		val tiempoTarea = tarea.tiempo
-		var costo = super.getCosto(tarea) * 1.07
+		var costo = super.costo(tarea) * 1.07
 		if (tiempoTarea >= 10) {
 			val diferencia = tiempoTarea - 10
 			costo = costo + (10 * diferencia)
@@ -29,8 +29,8 @@ class ComplejidadMaxima extends Complejidad {
 
 class ComplejidadMedia extends Complejidad {
 
-	override double getCosto(Tarea tarea) {
-		super.getCosto(tarea) * 1.05d
+	override double costo(Tarea tarea) {
+		super.costo(tarea) * 1.05d
 	}	
 	
 }

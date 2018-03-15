@@ -18,12 +18,12 @@ abstract class Tarea {
 	}
 	
 	def double costoComplejidad() {
-		complejidad.getCosto(this)
+		complejidad.costo(this)
 	}
 	
 	def double costoImpositivo() {
 		val costo = this.costoComplejidad
-		impuestos.fold (0.0) [ acum, impuesto | acum + impuesto.getCostoImpositivo(costo) ]
+		impuestos.fold (0.0) [ acum, impuesto | acum + impuesto.costoImpositivo(costo) ]
 	}
 
 	def void agregarImpuesto(Impuesto impuesto) {

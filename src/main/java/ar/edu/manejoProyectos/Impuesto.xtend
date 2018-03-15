@@ -7,7 +7,7 @@ class Impuesto {
 		this.porcentaje = porcentajeNeto / 100d
 	}
 	
-	def double getCostoImpositivo(double costo) {
+	def double costoImpositivo(double costo) {
 		porcentaje * costo
 	}
 }
