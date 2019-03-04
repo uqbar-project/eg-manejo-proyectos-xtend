@@ -1,5 +1,6 @@
 package ar.edu.manejoProyectos
 
+import ar.edu.manejoProyectos.exceptions.BusinessException
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -80,8 +81,7 @@ class TestTarea {
 
 	@Test
 	def void testAgregarSubtareaATareaSimple() {
-		excepcionEsperada.expectMessage("No puede agregar subtareas")
-		fregar.agregarSubtarea(new TareaSimple)
+		Assert.assertThrows("No puede agregar subtareas", typeof(BusinessException), [ fregar.agregarSubtarea(new TareaSimple) ])
 	}
 
 }
